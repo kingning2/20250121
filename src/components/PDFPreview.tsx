@@ -7,12 +7,13 @@ import { rotatePDF } from '@/utils/pdfUtils';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-interface PDFPreviewProps {
+export interface PDFPreviewProps {
   file: File;
   onRemove: () => void;
+  onRotate?: () => void;
 }
 
-export default function PDFPreview({ file, onRemove }: PDFPreviewProps) {
+export default function PDFPreview({ file, onRemove, onRotate }: PDFPreviewProps) {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageRotations, setPageRotations] = useState<{ [key: number]: number }>({});
   const [previewUrl, setPreviewUrl] = useState<string>('');
@@ -70,7 +71,7 @@ export default function PDFPreview({ file, onRemove }: PDFPreviewProps) {
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
           <button
-            onClick={handleRotateAll}
+            onClick={onRotate}
             className="px-4 py-2 bg-[#ff5722] text-white rounded hover:bg-[#f4511e] transition-colors"
             disabled={isProcessing}
           >

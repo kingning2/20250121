@@ -30,8 +30,8 @@ export default function Home() {
         <div className="bg-white rounded-lg border shadow-sm p-8">
           <PDFPreview
             file={file}
-            onRotate={handleRotateAll}
             onRemove={() => setFile(null)}
+            onRotate={handleRotateAll}
           />
         </div>
       )}
